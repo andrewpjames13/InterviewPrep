@@ -20,14 +20,25 @@
     });
 
     var PrepQuestion = React.createClass({
+      getInitialState: function(){
+        return{question: "Color?", answer: "red"}
+      },
+      handleSubmit: function(e){
+        e.preventDefault();
+        console.log(this.state.answer);
+      },
       render: function(){
         return(
           <div className="prep-question">
-            <h1>Hi Guys</h1>
+            <h1>{this.state.question}</h1>
+            <form onSubmit={this.handleSubmit}>
+              <input type="submit" value="See Answer"/>
+            </form>
           </div>
         )
       }
     });
+
 
     React.render(<PrepApp />, document.getElementById('content'));
     </script>
