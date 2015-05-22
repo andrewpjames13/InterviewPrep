@@ -14,6 +14,7 @@
         return(
           <div className="prep-app">
             <PrepQuestion />
+            <PrepAnswer />
           </div>
         )
       }
@@ -34,11 +35,21 @@
             <form onSubmit={this.handleSubmit}>
               <input type="submit" value="See Answer"/>
             </form>
+            <PrepAnswer answer={this.state.answer} />
           </div>
         )
       }
     });
 
+    var PrepAnswer = React.createClass({
+      render: function(){
+        return(
+          <div className="prep-answer">
+            <h1>{this.props.answer}</h1>
+          </div>
+        )
+      }
+    });
 
     React.render(<PrepApp />, document.getElementById('content'));
     </script>
