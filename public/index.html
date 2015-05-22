@@ -8,6 +8,18 @@
   <body>
     <div id="content"></div>
     <script type="text/jsx">
+
+    var PrepApp = React.createClass({
+      render: function(){
+        return(
+          <div className="prep-app">
+            <h1>Hi</h1>
+          </div>
+        )
+      }
+    });
+
+    React.render(<PrepApp />, document.getElementById('content'));
     </script>
   </body>
 </html>
