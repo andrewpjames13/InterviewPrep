@@ -14,28 +14,35 @@
         return(
           <div className="prep-app">
             <PrepQuestion />
-            <PrepAnswer />
           </div>
         )
       }
     });
 
+    var QOrA = "";
     var PrepQuestion = React.createClass({
       getInitialState: function(){
-        return{question: "Color?", answer: "red"}
+        return{question: "Color?", answer: "red", answered: false}
       },
       handleSubmit: function(e){
         e.preventDefault();
-        console.log(this.state.answer);
+        if (this.state.answered === false){
+          this.setState({answered: true});
+          QOrA = this.state.question;
+        } else {
+          this.setState({answered: false});
+          QOrA = this.state.answer;
+        }
+        console.log(this.state.answered);
       },
       render: function(){
         return(
           <div className="prep-question">
-            <h1>{this.state.question}</h1>
+            <h1>{QOrA}</h1>
             <form onSubmit={this.handleSubmit}>
               <input type="submit" value="See Answer"/>
             </form>
-            <PrepAnswer answer={this.state.answer} />
+
           </div>
         )
       }
