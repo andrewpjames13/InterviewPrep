@@ -9,27 +9,30 @@
     <div id="content"></div>
     <script type="text/jsx">
     var QOrA = "";
+    var quest = 0;
     var PrepApp = React.createClass({
       getInitialState: function(){
-        return{answered: false, value: "Start", question: 0};
+        return{answered: false, value: "See Answer", question: quest};
       },
       handleSubmit: function(e){
         e.preventDefault();
         if (this.state.answered === false){
           this.setState({answered: true});
-          this.setState({value:"See Answer"});
-          QOrA = <PrepQuestion/>;
-        } else {
-          this.setState({answered: false});
           this.setState({value:"Next Question"});
-          QOrA = <PrepAnswer />;
-          this.setState({question: this.state.question + 1 })
+        } else if (this.state.answered === true){
+          this.setState({answered: false});
+          this.setState({value:"See Answer"});
         }
       },
       render: function(){
+        if (this.state.answered === false){
+          QOrA = <PrepQuestion/>;
+        } else if (this.state.answered === true){
+          QOrA = <PrepAnswer />;
+        }
         return(
           <div className="prep-app">
-          <h1>{QOrA}</h1>
+          {QOrA}
           <form onSubmit={this.handleSubmit}>
             <input type="submit" value={this.state.value}/>
           </form>
@@ -38,14 +41,26 @@
       }
     });
 
+    // var PrepStart = React.createClass({
+    //   render: function(){
+    //     return(
+    //       <div className="prep-start">
+    //       <form onSubmit={this.handleSubmit}>
+    //         <input type="submit" value="Start"/>
+    //       </form>
+    //       </div>
+    //     )
+    //   }
+    // });
+
     var PrepQuestion = React.createClass({
       getInitialState: function(){
-        return{question: 0};
+        return{question: quest};
       },
       render: function(){
         return(
           <div className="prep-question">
-          {data[this.state.question].question}
+          <h1>{data[this.state.question].question}</h1>
           </div>
         )
       }
@@ -53,12 +68,22 @@
 
     var PrepAnswer = React.createClass({
       getInitialState: function(){
-        return{question: 0};
+        return{question: quest};
+      },
+      handleSubmit: function(e){
+        e.preventDefault();
+        quest = quest + 1;
+        console.log(quest);
+        QOrA = <PrepQuestion/>;
       },
       render: function(){
         return(
           <div className="prep-answer">
-            {data[this.state.question].answer}
+            <h1>{data[this.state.question].answer}</h1>
+            <form onSubmit={this.handleSubmit}>
+              <input type="submit" value="up"/>
+              <input type="submit" value="down"/>
+            </form>
           </div>
         )
       }
@@ -66,7 +91,9 @@
 
     var data = [
       {question: "Color?", answer: "red", correct: false},
-      {question: "Dog?", answer: "poodle", correct: false}
+      {question: "Dog?", answer: "poodle", correct: false},
+      {question: "Food?", answer: "Pizza", correct: false},
+      {question: "Shake?", answer: "Chocolate", correct: false}
     ];
     React.render(<PrepApp />, document.getElementById('content'));
     </script>
