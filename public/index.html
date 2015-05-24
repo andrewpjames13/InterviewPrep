@@ -8,20 +8,8 @@
   <body>
     <div id="content"></div>
     <script type="text/jsx">
-
-    var PrepApp = React.createClass({
-      render: function(){
-        return(
-          <div className="prep-app">
-            <PrepQuestion />
-            <PrepAnswer />
-          </div>
-        )
-      }
-    });
-
     var QOrA = "";
-    var PrepQuestion = React.createClass({
+    var PrepApp = React.createClass({
       getInitialState: function(){
         return{answered: false, value: "Start", question: 0};
       },
@@ -30,39 +18,55 @@
         if (this.state.answered === false){
           this.setState({answered: true});
           this.setState({value:"See Answer"});
-          QOrA = data[this.state.question].question;
+          QOrA = <PrepQuestion/>;
         } else {
           this.setState({answered: false});
           this.setState({value:"Next Question"});
-          QOrA = data[this.state.question].answer;
+          QOrA = <PrepAnswer />;
           this.setState({question: this.state.question + 1 })
         }
       },
       render: function(){
         return(
+          <div className="prep-app">
+          <h1>{QOrA}</h1>
+          <form onSubmit={this.handleSubmit}>
+            <input type="submit" value={this.state.value}/>
+          </form>
+          </div>
+        )
+      }
+    });
+
+    var PrepQuestion = React.createClass({
+      getInitialState: function(){
+        return{question: 0};
+      },
+      render: function(){
+        return(
           <div className="prep-question">
-            <h1>{QOrA}</h1>
-            <form onSubmit={this.handleSubmit}>
-              <input type="submit" value={this.state.value}/>
-            </form>
+          {data[this.state.question].question}
           </div>
         )
       }
     });
 
     var PrepAnswer = React.createClass({
+      getInitialState: function(){
+        return{question: 0};
+      },
       render: function(){
         return(
           <div className="prep-answer">
-            <h1>{this.props.answer}</h1>
+            {data[this.state.question].answer}
           </div>
         )
       }
     });
 
     var data = [
-      {question: "Color?", answer: "red", answered: false},
-      {question: "Dog?", answer: "poodle", answered: false}
+      {question: "Color?", answer: "red", correct: false},
+      {question: "Dog?", answer: "poodle", correct: false}
     ];
     React.render(<PrepApp />, document.getElementById('content'));
     </script>
