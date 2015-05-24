@@ -10,6 +10,8 @@
     <script type="text/jsx">
     var QOrA = "";
     var quest = 0;
+    var inputVal = "";
+
     var PrepApp = React.createClass({
       getInitialState: function(){
         return{answered: false, value: "See Answer", question: quest};
@@ -73,16 +75,26 @@
       handleSubmit: function(e){
         e.preventDefault();
         quest = quest + 1;
-        console.log(quest);
-        QOrA = <PrepQuestion/>;
+        $('.prep-answer input').on('click', function(){
+          inputVal = $(this).val();
+        });
+
+        if (inputVal === "up"){
+          data[this.state.question].correct = true;
+        } else {
+          data[this.state.question].correct = false;
+        }
+
+        console.log(data[this.state.question].correct);
+
       },
       render: function(){
         return(
           <div className="prep-answer">
             <h1>{data[this.state.question].answer}</h1>
             <form onSubmit={this.handleSubmit}>
-              <input type="submit" value="up"/>
-              <input type="submit" value="down"/>
+              <input id="up" type="submit" value="up"/>
+              <input id="down" type="submit" value="down"/>
             </form>
           </div>
         )
