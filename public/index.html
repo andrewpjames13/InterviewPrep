@@ -14,6 +14,7 @@
         return(
           <div className="prep-app">
             <PrepQuestion />
+            <PrepAnswer />
           </div>
         )
       }
@@ -22,27 +23,28 @@
     var QOrA = "";
     var PrepQuestion = React.createClass({
       getInitialState: function(){
-        return{question: "Color?", answer: "red", answered: false}
+        return{answered: false, value: "Start", question: 0};
       },
       handleSubmit: function(e){
         e.preventDefault();
         if (this.state.answered === false){
           this.setState({answered: true});
-          QOrA = this.state.question;
+          this.setState({value:"See Answer"});
+          QOrA = data[this.state.question].question;
         } else {
           this.setState({answered: false});
-          QOrA = this.state.answer;
+          this.setState({value:"Next Question"});
+          QOrA = data[this.state.question].answer;
+          this.setState({question: this.state.question + 1 })
         }
-        console.log(this.state.answered);
       },
       render: function(){
         return(
           <div className="prep-question">
             <h1>{QOrA}</h1>
             <form onSubmit={this.handleSubmit}>
-              <input type="submit" value="See Answer"/>
+              <input type="submit" value={this.state.value}/>
             </form>
-
           </div>
         )
       }
@@ -58,6 +60,10 @@
       }
     });
 
+    var data = [
+      {question: "Color?", answer: "red", answered: false},
+      {question: "Dog?", answer: "poodle", answered: false}
+    ];
     React.render(<PrepApp />, document.getElementById('content'));
     </script>
   </body>
