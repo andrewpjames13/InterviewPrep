@@ -19,6 +19,7 @@
       },
       handleSubmit: function(e){
         e.preventDefault();
+
         if (this.state.answered === false){
           this.setState({answered: true});
           this.setState({value:"Next Question"});
@@ -28,11 +29,17 @@
         }
       },
       render: function(){
-        if (this.state.answered === false){
+
+        if (this.state.answered === false && this.state.value === "See Answer"){
+          QOrA = <PrepQuestion data={this.props.data}/>;
+          quest = quest + 1;
+          console.log(quest);
+        } else if (this.state.answered === false){
           QOrA = <PrepQuestion data={this.props.data}/>;
         } else if (this.state.answered === true){
           QOrA = <PrepAnswer />;
         }
+
         return(
           <div className="prep-app">
           {QOrA}
@@ -68,19 +75,29 @@
       },
       handleUpSubmit: function(e){
         e.preventDefault();
-        quest = quest + 1;
+
+        // quest = quest + 1;
         array[this.state.question].correct = true;
         this.setState({answered: true});
-        $('input[id=up]').prop( "disabled", true );
+
         questionNodes();
+
+        $('input[id=up]').prop( "disabled", true );
+        $('input[id=down]').prop( "disabled", false );
+
       },
       handleDownSubmit: function(e){
         e.preventDefault();
-        quest = quest + 1;
+
+        // quest = quest + 1;
         array[this.state.question].correct = false;
         this.setState({answered: true});
-        $('input[id=down]').prop( "disabled", true );
+
         questionNodes();
+
+        $('input[id=up]').prop( "disabled", false );
+        $('input[id=down]').prop( "disabled", true );
+
       },
       render: function(){
         return(
