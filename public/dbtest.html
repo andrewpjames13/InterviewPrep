@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <title>Interview Prep</title>
+    <script src="https://fb.me/react-0.13.3.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/jsx">
+    var QOrA = "";
+    var quest = 0;
+    var inputVal = "";
+
+    var PrepApp = React.createClass({
+      loadQuestionsFromServer: function() {
+        $.ajax({
+          url: this.props.url,
+          dataType: 'json',
+          cache: false,
+          success: function(data) {
+            console.log('hi');
+            this.setState({data: data});
+          }.bind(this),
+          error: function(xhr, status, err) {
+            console.error(this.props.url, status, err.toString());
+          }.bind(this)
+        });
+      },
+      getInitialState: function() {
+        return {data: []};
+      },
+      componentDidMount: function() {
+        this.loadQuestionsFromServer();
+        setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
+      },
+      handleSubmit: function(e){
+        e.preventDefault();
+        console.log(this.props.data)
+        if (this.state.answered === false){
+          this.setState({answered: true});
+          this.setState({value:"Next Question"});
+        } else if (this.state.answered === true){
+          this.setState({answered: false});
+          this.setState({value:"See Answer"});
+        }
+      },
+      render: function(){
+        if (this.state.answered === false){
+          QOrA = <PrepQuestion/>;
+        } else if (this.state.answered === true){
+          QOrA = <PrepAnswer />;
+        }
+        return(
+          <div className="prep-app">
+          <PrepQuestion data={this.props.data}/>
+          <form onSubmit={this.handleSubmit}>
+            <input type="submit" value={this.state.value}/>
+          </form>
+          </div>
+        )
+      }
+    });
+
+    var PrepQuestion = React.createClass({
+
+      render: function(){
+debugger;
+        var questionNodes = this.props.data.map(function (question){
+          return(
+            <Question question={question.question}>
+              {question.answer}
+            </Question>
+          );
+        });
+        return(
+          <div className="prep-question">
+            {questionNodes}
+          </div>
+        )
+      }
+    });
+
+    var PrepAnswer = React.createClass({
+      getInitialState: function(){
+        return{question: quest};
+      },
+      handleSubmit: function(e){
+        e.preventDefault();
+        quest = quest + 1;
+        $('.prep-answer input').on('click', function(){
+          inputVal = $(this).val();
+        });
+
+        if (inputVal === "up"){
+          data[this.state.question].correct = true;
+        } else {
+          data[this.state.question].correct = false;
+        }
+
+      },
+      render: function(){
+        return(
+          <div className="prep-answer">
+            <h1>{data[this.state.question].answer}</h1>
+            <form onSubmit={this.handleSubmit}>
+              <input id="up" type="submit" value="up"/>
+              <input id="down" type="submit" value="down"/>
+            </form>
+          </div>
+        )
+      }
+    });
+    var Question = React.createClass({
+    render: function(){
+      var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+      return (
+        <div className="question">
+          <h2 className='questionQ'>
+            {this.props.question}
+          </h2>
+          <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+        </div>
+      );
+    }
+  });
+
+
+    // var data = [
+    //   {question: "Color?", answer: "red", correct: false},
+    //   {question: "Dog?", answer: "poodle", correct: false},
+    //   {question: "Food?", answer: "Pizza", correct: false},
+    //   {question: "Shake?", answer: "Chocolate", correct: false}
+    // ];
+    React.render(
+      <PrepApp url="questions.json" pollInterval={2000}/>,
+      document.getElementById('content')
+    );
+    </script>
+  </body>
+</html>
