@@ -11,6 +11,7 @@
     var QOrA = "";
     var quest = 0;
     var inputVal = "";
+    var correctOrNot ;
 
     var PrepApp = React.createClass({
       getInitialState: function(){
@@ -28,7 +29,7 @@
       },
       render: function(){
         if (this.state.answered === false){
-          QOrA = <PrepQuestion/>;
+          QOrA = <PrepQuestion data={this.props.data}/>;
         } else if (this.state.answered === true){
           QOrA = <PrepAnswer />;
         }
@@ -43,15 +44,19 @@
       }
     });
 
-
     var PrepQuestion = React.createClass({
       getInitialState: function(){
         return{question: quest};
       },
       render: function(){
+        // if (data[this.state.question].correct === true){
+        //   correctOrNot = data[this.state.question].question
+        // } else {
+        //   correctOrNot = data[this.state.question].question
+        // }
         return(
           <div className="prep-question">
-          <h1>{data[this.state.question].question}</h1>
+          <h1>{array[this.state.question].question}</h1>
           </div>
         )
       }
@@ -64,19 +69,21 @@
       handleUpSubmit: function(e){
         e.preventDefault();
         quest = quest + 1;
-        data[this.state.question].correct = true;
+        array[this.state.question].correct = true;
         this.setState({answered: true});
+        questionNodes();
       },
       handleDownSubmit: function(e){
         e.preventDefault();
         quest = quest + 1;
-        data[this.state.question].correct = false;
+        array[this.state.question].correct = false;
         this.setState({answered: true});
+        questionNodes();
       },
       render: function(){
         return(
           <div className="prep-answer">
-            <h1>{data[this.state.question].answer}</h1>
+            <h1>{array[this.state.question].answer}</h1>
             <form onSubmit={this.handleUpSubmit}>
               <input id="up" type="submit" value="up"/>
             </form>
@@ -94,7 +101,24 @@
       {question: "Food?", answer: "Pizza", correct: false},
       {question: "Shake?", answer: "Chocolate", correct: false}
     ];
-    React.render(<PrepApp />, document.getElementById('content'));
+
+    var array = [];
+    var questionNodes = function(){
+      array = []
+      data.map(function (question){
+      if (question.correct === false){
+        array.push(question)
+      }
+      return(
+        <div>
+          {array}
+        </div>
+      );
+    });
+  };
+  questionNodes();
+
+    React.render(<PrepApp data={data}/>, document.getElementById('content'));
     </script>
   </body>
 </html>
