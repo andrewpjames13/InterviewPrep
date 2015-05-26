@@ -4,6 +4,8 @@
     <script src="https://fb.me/react-0.13.3.js"></script>
     <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+
   </head>
   <body>
     <div id="content"></div>
@@ -18,6 +20,7 @@
       },
       handleSubmit: function(e){
         e.preventDefault();
+        console.log(this.props.data)
         if (this.state.answered === false){
           this.setState({answered: true});
           this.setState({value:"Next Question"});
@@ -34,7 +37,7 @@
         }
         return(
           <div className="prep-app">
-          {QOrA}
+          <PrepQuestion data={this.props.data}/>
           <form onSubmit={this.handleSubmit}>
             <input type="submit" value={this.state.value}/>
           </form>
@@ -60,9 +63,16 @@
         return{question: quest};
       },
       render: function(){
+        var questionNodes = this.props.data.map(function (question){
+          return(
+            <Question question={question.question}>
+              {question.answer}
+            </Question>
+          );
+        });
         return(
           <div className="prep-question">
-          <h1>{data[this.state.question].question}</h1>
+            {questionNodes}
           </div>
         )
       }
@@ -85,8 +95,6 @@
           data[this.state.question].correct = false;
         }
 
-        console.log(data[this.state.question].correct);
-
       },
       render: function(){
         return(
@@ -100,6 +108,20 @@
         )
       }
     });
+    var Question = React.createClass({
+    render: function(){
+      var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
+      return (
+        <div className="question">
+          <h2 className='questionQ'>
+            {this.props.question}
+          </h2>
+          <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+        </div>
+      );
+    }
+  });
+
 
     var data = [
       {question: "Color?", answer: "red", correct: false},
@@ -107,7 +129,7 @@
       {question: "Food?", answer: "Pizza", correct: false},
       {question: "Shake?", answer: "Chocolate", correct: false}
     ];
-    React.render(<PrepApp />, document.getElementById('content'));
+    React.render(<PrepApp data={data}/>, document.getElementById('content'));
     </script>
   </body>
 </html>
