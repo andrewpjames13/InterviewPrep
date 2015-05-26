@@ -71,6 +71,7 @@
         quest = quest + 1;
         array[this.state.question].correct = true;
         this.setState({answered: true});
+        $('input[id=up]').prop( "disabled", true );
         questionNodes();
       },
       handleDownSubmit: function(e){
@@ -78,6 +79,7 @@
         quest = quest + 1;
         array[this.state.question].correct = false;
         this.setState({answered: true});
+        $('input[id=down]').prop( "disabled", true );
         questionNodes();
       },
       render: function(){
@@ -119,6 +121,9 @@
   questionNodes();
 
     React.render(<PrepApp data={data}/>, document.getElementById('content'));
+
+
+
     </script>
   </body>
 </html>
