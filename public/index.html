@@ -20,20 +20,25 @@
       handleSubmit: function(e){
         e.preventDefault();
 
+        if(this.state.value === "See Answer"){
+          $('input[id=next]').prop( "disabled", true );
+        }
+
         if (this.state.answered === false){
           this.setState({answered: true});
           this.setState({value:"Next Question"});
         } else if (this.state.answered === true){
           this.setState({answered: false});
           this.setState({value:"See Answer"});
+          questionNodes();
+
         }
+
       },
       render: function(){
 
         if (this.state.answered === false && this.state.value === "See Answer"){
           QOrA = <PrepQuestion data={this.props.data}/>;
-          quest = quest + 1;
-          console.log(quest);
         } else if (this.state.answered === false){
           QOrA = <PrepQuestion data={this.props.data}/>;
         } else if (this.state.answered === true){
@@ -44,7 +49,7 @@
           <div className="prep-app">
           {QOrA}
           <form onSubmit={this.handleSubmit}>
-            <input type="submit" value={this.state.value}/>
+            <input id="next" type="submit" value={this.state.value}/>
           </form>
           </div>
         )
@@ -80,10 +85,11 @@
         array[this.state.question].correct = true;
         this.setState({answered: true});
 
-        questionNodes();
+        // questionNodes();
 
         $('input[id=up]').prop( "disabled", true );
         $('input[id=down]').prop( "disabled", false );
+        $('input[id=next]').prop( "disabled", false );
 
       },
       handleDownSubmit: function(e){
@@ -93,10 +99,11 @@
         array[this.state.question].correct = false;
         this.setState({answered: true});
 
-        questionNodes();
+        // questionNodes();
 
         $('input[id=up]').prop( "disabled", false );
         $('input[id=down]').prop( "disabled", true );
+        $('input[id=next]').prop( "disabled", false );
 
       },
       render: function(){
@@ -130,14 +137,27 @@
       }
       return(
         <div>
-          {array}
+          {shuffle(array)}
         </div>
       );
     });
   };
   questionNodes();
 
-    React.render(<PrepApp data={data}/>, document.getElementById('content'));
+  function shuffle(array) {
+  var num = array.length, t, index;
+
+  while (num) {
+    index = Math.floor(Math.random() * num--);
+    t = array[num];
+    array[num] = array[index];
+    array[index] = t;
+  }
+    return array;
+  }
+
+
+  React.render(<PrepApp data={data}/>, document.getElementById('content'));
 
 
 
