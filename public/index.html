@@ -45,9 +45,10 @@
         e.preventDefault();
         if(this.state.value === "Start" && this.state.answered === false){
           this.setState({value:"See Answer"});
+          questionNodes(this.state);
+
         } else if(this.state.value === "See Answer"){
           $('input[id=next]').prop( "disabled", true );
-
           this.setState({answered: true});
           this.setState({value:"Next Question"});
         } else if (this.state.answered === false){
@@ -56,13 +57,12 @@
         } else if (this.state.answered === true){
           this.setState({answered: false});
           this.setState({value:"See Answer"});
-          questionNodes(this.state.data);
+          questionNodes(this.state);
         }
 
       },
       render: function(){
 
-        questionNodes(this.state);
         if (this.state.answered === false && this.state.value === "Start"){
           QOrA = <PrepStart />;
         } else if (this.state.answered === false && this.state.value === "See Answer"){
@@ -72,8 +72,7 @@
         } else if (this.state.answered === true){
           QOrA = <PrepAnswer />;
         }
-        console.log(this.state.answered);
-        console.log(this.state.value);
+
         return(
           <div className="prep-app">
           {QOrA}
@@ -194,29 +193,29 @@
   React.render(<PrepApp url="db" />, document.getElementById('content'));
 
 
-  //Timer Component 2
-  // var Timer = React.createClass({
-  //   getInitialState: function() {
-  //     return {secondsElapsed: 0};
-  //   },
-  //   tick: function() {
-  //     this.setState({secondsElapsed: this.state.secondsElapsed + 1});
-  //   },
-  //   componentDidMount: function() {
-  //     this.interval = setInterval(this.tick, 1000);
-  //   },
-  //   componentWillUnmount: function() {
-  //     clearInterval(this.interval);
-  //   },
-  //   render: function() {
-  //     return (
-  //       <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
-  //     );
-  //   }
-  // });
-  //
-  // var mountNode = document.getElementById('timer')
-  // React.render(<Timer />, mountNode);
+  // Timer Component 2
+  var Timer = React.createClass({
+    getInitialState: function() {
+      return {secondsElapsed: 0};
+    },
+    tick: function() {
+      this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+    },
+    componentDidMount: function() {
+      this.interval = setInterval(this.tick, 1000);
+    },
+    componentWillUnmount: function() {
+      clearInterval(this.interval);
+    },
+    render: function() {
+      return (
+        <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+      );
+    }
+  });
+
+  var mountNode = document.getElementById('timer')
+  React.render(<Timer />, mountNode);
 
     </script>
   </body>
