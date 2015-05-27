@@ -46,6 +46,8 @@
         if(this.state.value === "Start" && this.state.answered === false){
           this.setState({value:"See Answer"});
         } else if(this.state.value === "See Answer"){
+          $('input[id=next]').prop( "disabled", true );
+
           this.setState({answered: true});
           this.setState({value:"Next Question"});
         } else if (this.state.answered === false){
