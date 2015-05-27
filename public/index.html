@@ -9,6 +9,7 @@
   </head>
   <body>
     <div id="content"></div>
+    <div id="timer"></div>
     <script type="text/jsx">
     var QOrA = "";
     var quest = 0;
@@ -63,11 +64,6 @@
         return{question: quest};
       },
       render: function(){
-        // if (data[this.state.question].correct === true){
-        //   correctOrNot = data[this.state.question].question
-        // } else {
-        //   correctOrNot = data[this.state.question].question
-        // }
         return(
           <div className="prep-question">
           <h1>{array[this.state.question].question}</h1>
@@ -83,11 +79,8 @@
       handleUpSubmit: function(e){
         e.preventDefault();
 
-        // quest = quest + 1;
         array[this.state.question].correct = true;
         this.setState({answered: true});
-
-        // questionNodes();
 
         $('input[id=up]').prop( "disabled", true );
         $('input[id=down]').prop( "disabled", false );
@@ -97,11 +90,8 @@
       handleDownSubmit: function(e){
         e.preventDefault();
 
-        // quest = quest + 1;
         array[this.state.question].correct = false;
         this.setState({answered: true});
-
-        // questionNodes();
 
         $('input[id=up]').prop( "disabled", false );
         $('input[id=down]').prop( "disabled", true );
@@ -158,10 +148,32 @@
     return array;
   }
 
-
   React.render(<PrepApp data={data}/>, document.getElementById('content'));
 
 
+  //Timer Component 2
+  var Timer = React.createClass({
+    getInitialState: function() {
+      return {secondsElapsed: 0};
+    },
+    tick: function() {
+      this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+    },
+    componentDidMount: function() {
+      this.interval = setInterval(this.tick, 1000);
+    },
+    componentWillUnmount: function() {
+      clearInterval(this.interval);
+    },
+    render: function() {
+      return (
+        <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+      );
+    }
+  });
+
+  var mountNode = document.getElementById('timer')
+  React.render(<Timer />, mountNode);
 
     </script>
   </body>
