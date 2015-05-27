@@ -33,6 +33,7 @@
         return {data: []};
       },
       componentDidMount: function() {
+
         this.loadQuestionsFromServer();
         setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
       },
@@ -55,7 +56,7 @@
         }
         return(
           <div className="prep-app">
-          <PrepQuestion data={this.props.data}/>
+          <PrepQuestion data={this.state.data}/>
           <form onSubmit={this.handleSubmit}>
             <input type="submit" value={this.state.value}/>
           </form>
@@ -65,16 +66,19 @@
     });
 
     var PrepQuestion = React.createClass({
-
       render: function(){
-debugger;
-        var questionNodes = this.props.data.map(function (question){
-          return(
-            <Question question={question.question}>
-              {question.answer}
-            </Question>
-          );
-        });
+        debugger;
+
+        var questionNodes = this.props.data.questions
+        if(questionNodes){
+          questionNodes.map(function (question){
+            return(
+              <Question question={question.question}>
+                {question.answer}
+              </Question>
+            );
+          });
+        }
         return(
           <div className="prep-question">
             {questionNodes}
@@ -135,7 +139,7 @@ debugger;
     //   {question: "Shake?", answer: "Chocolate", correct: false}
     // ];
     React.render(
-      <PrepApp url="questions.json" pollInterval={2000}/>,
+      <PrepApp url="db" pollInterval={2000}/>,
       document.getElementById('content')
     );
     </script>
