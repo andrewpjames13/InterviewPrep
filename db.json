@@ -19,6 +19,11 @@
       "question": "Shake?",
       "answer": "Chocolate",
       "correct": false
+    },
+    {
+      "question": "Java and JavaScript are the same?",
+      "answer": "No",
+      "correct": false
     }
   ]
 
