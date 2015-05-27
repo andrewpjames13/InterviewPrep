@@ -18,13 +18,11 @@
 
     var PrepApp = React.createClass({
       loadQuestionsFromServer: function() {
-        // console.log('howdt');
         $.ajax({
           url: this.props.url,
           dataType: 'json',
           cache: false,
           success: function(data) {
-            // console.log(data.questions);
             this.setState({data: data.questions});
           }.bind(this),
           error: function(xhr, status, err) {
@@ -37,11 +35,11 @@
       },
       componentDidMount: function() {
         this.loadQuestionsFromServer();
-        setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
+        // setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
       },
       componentWillMount: function(){
         this.loadQuestionsFromServer();
-        setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
+        // setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
       },
       handleSubmit: function(e){
         e.preventDefault();
@@ -191,7 +189,7 @@
     return array;
   }
 
-  React.render(<PrepApp url="db" pollInterval={2000}/>, document.getElementById('content'));
+  React.render(<PrepApp url="db" />, document.getElementById('content'));
 
 
   //Timer Component 2
