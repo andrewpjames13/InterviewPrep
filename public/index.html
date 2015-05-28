@@ -45,10 +45,11 @@
       handleSubmit: function(e){
         e.preventDefault();
 
-        if(this.state.value === "Start" && this.state.answered === false){
+        if(array.length === 0 && this.state.value === "See Answer"){
+          return;
+          }else if(this.state.value === "Start" && this.state.answered === false){
           this.setState({value:"See Answer"});
           questionNodes(this.state);
-
         } else if(this.state.value === "See Answer"){
           $('input[id=next]').prop( "disabled", true );
           this.setState({answered: true});
@@ -73,8 +74,9 @@
         }
           this.setState({answered: false});
           this.setState({value:"See Answer"});
+          this.setState({value:"See Answer"});
           questionNodes(this.state);
-          this.setState({data: data.questions});
+          // this.setState({data: data.questions});
 
           // $.ajax({
           //         url: this.props.url + "/" + dbUpdate.id,
@@ -96,6 +98,8 @@
 
         if (this.state.answered === false && this.state.value === "Start"){
           QOrA = <PrepStart />;
+        } else if (this.state.answered === false && array.length === 0 && this.state.value === "See Answer"){
+          QOrA = <PrepEnd />;
         } else if (this.state.answered === false && this.state.value === "See Answer"){
           QOrA = <PrepQuestion data={this.state.data}/>;
         } else if (this.state.answered === false){
@@ -120,6 +124,16 @@
         return(
           <h1>
             Start Your Interview Prep
+          </h1>
+        )
+      }
+    });
+
+    var PrepEnd = React.createClass({
+      render: function(){
+        return(
+          <h1>
+            Congrats Youre done!
           </h1>
         )
       }
