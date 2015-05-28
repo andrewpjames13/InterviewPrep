@@ -16,10 +16,14 @@
     var quest = 0;
     var inputVal = "";
 
+
     var PrepApp = React.createClass({
       loadQuestionsFromServer: function() {
         $.ajax({
           url: this.props.url,
+          xhrFields: {
+            withCredentials: true
+          },
           dataType: 'json',
           cache: false,
           success: function(data) {
@@ -235,7 +239,7 @@
     return array;
   }
 
-  React.render(<PrepApp url="db" pollInterval={10000}/>, document.getElementById('content'));
+  React.render(<PrepApp url="http://localhost:3000/questions" pollInterval={10000}/>, document.getElementById('content'));
 
 
   // Timer Component 2
