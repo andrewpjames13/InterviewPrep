@@ -23,6 +23,7 @@
           dataType: 'json',
           cache: false,
           success: function(data) {
+            console.log('hi');
             this.setState({data: data.questions});
           }.bind(this),
           error: function(xhr, status, err) {
@@ -30,17 +31,34 @@
           }.bind(this)
         });
       },
+      // handleCommentSubmit: function(question) {
+      //   var comments = this.state.data;
+      //   // var newComments = comments.concat([comment]);
+      //   this.setState({data: newComments});
+      //   $.ajax({
+      //         url: this.props.url,
+      //         dataType: 'json',
+      //         type: 'POST',
+      //         data: question,
+      //         success: function(data) {
+      //           this.setState({data: data.questions});
+      //         }.bind(this),
+      //         error: function(xhr, status, err) {
+      //           console.error(this.props.url, status, err.toString());
+      //         }.bind(this)
+      //       });
+      // },
       getInitialState: function() {
         return{answered: false, value: "Start", question: quest, data: [], array:[]};
       },
       componentDidMount: function() {
         this.loadQuestionsFromServer();
-        // setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
+        setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
       },
-      componentWillMount: function(){
-        this.loadQuestionsFromServer();
-        // setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
-      },
+      // componentWillMount: function(){
+      //   this.loadQuestionsFromServer();
+      //   // setInterval(this.loadQuestionsFromServer, this.props.pollInterval);
+      // },
       handleSubmit: function(e){
         e.preventDefault();
         if(this.state.value === "Start" && this.state.answered === false){
@@ -55,11 +73,38 @@
           this.setState({answered: true});
           this.setState({value:"Next Question"});
         } else if (this.state.answered === true){
+          // console.log(this.state);
+          var DomState = this.state.data;
+          var dbUpdate = {};
+          if (DomState){
+            DomState.map(function (question){
+            if (question.correct === true){
+              dbUpdate = question;
+            }
+            return(
+              <div>
+                {dbUpdate}
+              </div>
+            );
+          });
+        }
           this.setState({answered: false});
           this.setState({value:"See Answer"});
-          questionNodes(this.state);
+          $.ajax({
+                  url: this.props.url,
+                  dataType: 'json',
+                  type: 'POST',
+                  data: dbUpdate,
+                  success: function(data) {
+                    // console.log(this.state);
+                    questionNodes(this.state);
+                    this.setState({data: data.questions});
+                  }.bind(this),
+                  error: function(xhr, status, err) {
+                    console.error(this.props.url, status, err.toString());
+                  }.bind(this)
+                });
         }
-
       },
       render: function(){
 
@@ -190,7 +235,7 @@
     return array;
   }
 
-  React.render(<PrepApp url="db" />, document.getElementById('content'));
+  React.render(<PrepApp url="db" pollInterval={10000}/>, document.getElementById('content'));
 
 
   // Timer Component 2
