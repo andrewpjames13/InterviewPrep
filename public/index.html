@@ -73,21 +73,23 @@
         }
           this.setState({answered: false});
           this.setState({value:"See Answer"});
+          questionNodes(this.state);
+          this.setState({data: data.questions});
 
-          $.ajax({
-                  url: this.props.url + "/" + dbUpdate.id,
-                  dataType: 'json',
-                  type: 'PATCH',
-                  accept: "application/json",
-                  data: {question:{correct: dbUpdate.correct}},
-                  success: function(data) {
-                    questionNodes(this.state);
-                    this.setState({data: data.questions});
-                  }.bind(this),
-                  error: function(xhr, status, err) {
-                    console.error(this.props.url, status, err.toString());
-                  }.bind(this)
-                });
+          // $.ajax({
+          //         url: this.props.url + "/" + dbUpdate.id,
+          //         dataType: 'json',
+          //         type: 'PATCH',
+          //         accept: "application/json",
+          //         data: {question:{correct: dbUpdate.correct}},
+          //         success: function(data) {
+          //           questionNodes(this.state);
+          //           this.setState({data: data.questions});
+          //         }.bind(this),
+          //         error: function(xhr, status, err) {
+          //           console.error(this.props.url, status, err.toString());
+          //         }.bind(this)
+          //       });
         }
       },
       render: function(){
