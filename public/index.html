@@ -145,7 +145,6 @@
         return(
           <div className="prep-app">
           {standingQ}
-
           {QOrA}
           <div className="col-1-25-5 button-container f-right">
 
@@ -260,12 +259,12 @@
               </div>
               <div className="col-1-6-5 answer-button-box black f-left">
                 <form onSubmit={this.handleUpSubmit}>
-                  <button id="up" type="submit" value="up">up</button>
+                  <button id="up" type="submit" value="up"><img src="images/thumbs-up.png" alt="thumbs-up"/></button>
                 </form>
               </div>
               <div className="col-1-6-5 answer-button-box black f-left">
                 <form onSubmit={this.handleDownSubmit}>
-                  <button id="down" type="submit" value="down">down</button>
+                  <button id="down" type="submit" value="down"><img src="images/thumbs-down.png" alt="thumbs-down"/></button>
                 </form>
               </div>
 

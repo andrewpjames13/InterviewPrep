@@ -185,9 +185,6 @@ button:focus {
   background-color: #F4F4F4;
   cursor: pointer; }
 
-.active {
-  background-color: #F4F4F4; }
-
 *:focus {
   outline: 0; }
 
