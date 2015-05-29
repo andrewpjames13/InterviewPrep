@@ -5,9 +5,11 @@
 .col-1-5{
   width: 20%;
 }
+
 .col-4-5{
   width:80%;
 }
+
 .col-5-5{
   width: 100%;
 }
@@ -26,34 +28,11 @@
 
 #content{
   height: 80%;
+  padding: 2% 5%;
 }
 
-.black{
-  background-color: $black;
-}
-
-.white{
-  background-color: $white;
-}
-
-.gray1{
-  background-color: $gray1;
-}
-
-.gray2{
-  background-color: $gray2;
-}
-
-.gray3{
-  background-color: $gray3;
-}
-
-.gray4{
-  background-color: $gray4;
-}
-
-.gray5{
-  background-color: $gray5;
+hr{
+  border-color: $gold;
 }
 
 .f-right{

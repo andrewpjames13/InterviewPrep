@@ -10,11 +10,12 @@
   <body>
       <div class="col-4-5 f-right">
         <div class="col-5-5 header black">
-
+          <h2>PrApp</h2>
         </div>
         <div id="content" class="col-5-5 black">
 
         </div>
+
         <div class="col-5-5 footer black">
 
         </div>
@@ -144,6 +145,7 @@
         return(
           <div className="prep-app">
           {QOrA}
+          <hr></hr>
           <form onSubmit={this.handleSubmit}>
             <input id="next" type="submit" value={this.state.value}/>
           </form>
@@ -156,7 +158,8 @@
       render: function(){
         return(
           <h1>
-            Start Your Interview Prep
+          Start your interview PrApperation.
+          You can thank me later!
           </h1>
         )
       }
