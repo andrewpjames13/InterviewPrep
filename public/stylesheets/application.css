@@ -83,12 +83,52 @@ h4 {
 small, .font_small {
   font-size: 0.707em; }
 
-.prep-app {
-  width: 30%;
-  height: 400px;
-  margin: 10% auto;
-  border-radius: 10px;
-  padding: 2% 3% 3% 3%;
+[class*='col-'] {
+  float: left; }
+
+.col-1-5 {
+  width: 20%; }
+
+.col-4-5 {
+  width: 80%; }
+
+.col-5-5 {
+  width: 100%; }
+
+.header {
+  height: 10%; }
+
+.box {
+  height: 20%; }
+
+.footer {
+  height: 10%; }
+
+#content {
+  height: 80%; }
+
+.black {
+  background-color: #272928; }
+
+.white {
+  background-color: #F4F4F4; }
+
+.gray1 {
+  background-color: #EFEFEF; }
+
+.gray2 {
+  background-color: #EAEAEA; }
+
+.gray3 {
+  background-color: #E2E2E2; }
+
+.gray4 {
+  background-color: #D8D8D8; }
+
+.gray5 {
   background-color: #CECECE; }
+
+.f-right {
+  float: right; }
 
 /*# sourceMappingURL=application.css.map */

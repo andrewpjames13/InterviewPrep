@@ -1,0 +1,69 @@
+[class*='col-'] {
+  float: left;
+}
+
+.col-1-5{
+  width: 20%;
+}
+.col-4-5{
+  width:80%;
+}
+.col-5-5{
+  width: 100%;
+}
+
+.header{
+  height:10%;
+}
+
+.box{
+  height:20%;
+}
+
+.footer{
+  height:10%;
+}
+
+#content{
+  height: 80%;
+}
+
+.black{
+  background-color: $black;
+}
+
+.white{
+  background-color: $white;
+}
+
+.gray1{
+  background-color: $gray1;
+}
+
+.gray2{
+  background-color: $gray2;
+}
+
+.gray3{
+  background-color: $gray3;
+}
+
+.gray4{
+  background-color: $gray4;
+}
+
+.gray5{
+  background-color: $gray5;
+}
+
+.f-right{
+  float:right;
+}
+// .prep-app{
+//   width: 30%;
+//   height:400px;
+//   // margin: 10% auto;
+//   border-radius: 10px;
+//   padding: 2% 3% 3% 3%;
+//   background-color: $gray5;
+// }
