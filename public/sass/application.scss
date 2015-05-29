@@ -3,6 +3,7 @@
 }
 
 @import "reset";
+@import "color";
 @import "type";
 
 .prep-app{
@@ -11,5 +12,5 @@
   margin: 10% auto;
   border-radius: 10px;
   padding: 2% 3% 3% 3%;
-  background-color: #F0F0F0;
+  background-color: $gray5;
 }
