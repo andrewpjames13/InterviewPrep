@@ -112,6 +112,15 @@ small, .font_small {
 .col-1-5 {
   width: 20%; }
 
+.col-1-25-5 {
+  width: 25%; }
+
+.col-1-6-5 {
+  width: 32%; }
+
+.col-3-5-5 {
+  width: 75%; }
+
 .col-4-5 {
   width: 80%; }
 
@@ -124,6 +133,21 @@ small, .font_small {
 .box {
   height: 20%; }
 
+.content-con {
+  height: 80%; }
+
+.button-container {
+  height: 20%; }
+
+.button-box {
+  height: 20%;
+  bottom: 0;
+  right: 0; }
+
+.answer-button-box {
+  height: 20%;
+  bottom: 0; }
+
 .footer {
   height: 10%; }
 
@@ -132,9 +156,14 @@ small, .font_small {
   padding: 2% 5%; }
 
 hr {
-  border-color: #A29060; }
+  border-color: #A29060;
+  margin: 0;
+  padding: 0; }
 
 .f-right {
   float: right; }
+
+.f-left {
+  float: left; }
 
 /*# sourceMappingURL=application.css.map */

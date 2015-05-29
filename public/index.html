@@ -42,8 +42,6 @@
         </div>
       </div>
 
-    <!-- <div id="content"></div> -->
-    <!-- <div id="timer"></div> -->
     <script type="text/jsx">
     var standingQ = "";
     var QOrA = "";
@@ -147,11 +145,15 @@
         return(
           <div className="prep-app">
           {standingQ}
+
           {QOrA}
-          <div className="col-5-5">
+          <div className="col-1-25-5 button-container f-right">
+
+          <div className="col-1-5-5 button-box">
             <form onSubmit={this.handleSubmit}>
               <input id="next" type="submit" value={this.state.value}/>
             </form>
+          </div>
           </div>
           </div>
         )
@@ -162,10 +164,13 @@
       render: function(){
         return(
           <div>
+          <div className="col-5-5 content-con">
             <h1>
-              Start your interview PrApperation.
+              Start your interview Preperation.
               You can thank me later!
             </h1>
+            </div>
+
             <hr></hr>
           </div>
         )
@@ -175,9 +180,15 @@
     var PrepEnd = React.createClass({
       render: function(){
         return(
+          <div>
+          <div className="col-5-5 content-con">
+
           <h1>
             Congrats Youre done!
           </h1>
+          </div>
+          <hr></hr>
+          </div>
         )
       }
     });
@@ -193,7 +204,10 @@
         if (arrayData != []){
           return(
             <div className="prep-question">
-            <h1>{array[this.state.question].question}</h1>
+            <div className="col-5-5 content-con">
+              <h1>{array[this.state.question].question}</h1>
+            </div>
+
             <hr></hr>
             </div>
           )
@@ -231,16 +245,28 @@
       render: function(){
         return(
           <div className="prep-answer">
-          <h1>{array[this.state.question].question}</h1>
+          <div className="col-5-5 content-con">
+            <h1>{array[this.state.question].question}</h1>
             <h1>{array[this.state.question].answer}</h1>
-            <hr></hr>
+          </div>
+            <div className="col-3-5-5 button-container f-left">
 
-            <form onSubmit={this.handleUpSubmit}>
-              <input id="up" type="submit" value="up"/>
-            </form>
-            <form onSubmit={this.handleDownSubmit}>
-              <input id="down" type="submit" value="down"/>
-            </form>
+              <hr></hr>
+              <div className="col-1-6-5 answer-button-box black f-left">
+              </div>
+              <div className="col-1-6-5 answer-button-box black f-left">
+                <form onSubmit={this.handleUpSubmit}>
+                  <input id="up" type="submit" value="up"/>
+                </form>
+              </div>
+              <div className="col-1-6-5 answer-button-box black f-left">
+                <form onSubmit={this.handleDownSubmit}>
+                  <input id="down" type="submit" value="down"/>
+                </form>
+              </div>
+
+            </div>
+
           </div>
         )
       }

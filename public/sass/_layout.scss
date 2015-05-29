@@ -6,6 +6,18 @@
   width: 20%;
 }
 
+.col-1-25-5{
+  width: 25%;
+}
+
+.col-1-6-5{
+  width: 32%;
+}
+
+.col-3-5-5{
+  width:75%;
+}
+
 .col-4-5{
   width:80%;
 }
@@ -22,6 +34,28 @@
   height:20%;
 }
 
+.content-con{
+  height:80%;
+}
+
+.button-container{
+  height:20%;
+}
+
+.button-box{
+  // position:absolute;
+  height:20%;
+  bottom: 0;
+  right:0;
+}
+
+.answer-button-box{
+  // position:absolute;
+  height:20%;
+  bottom: 0;
+  // right:0;
+}
+
 .footer{
   height:10%;
 }
@@ -33,10 +67,16 @@
 
 hr{
   border-color: $gold;
+  margin: 0;
+  padding: 0;
 }
 
 .f-right{
   float:right;
+}
+
+.f-left{
+  float:left;
 }
 // .prep-app{
 //   width: 30%;
