@@ -81,7 +81,8 @@ body {
   color: #A29060; }
 
 p {
-  margin-bottom: 1.3em; }
+  margin-bottom: 1.3em;
+  font-weight: normal; }
 
 h1, h2, h3, h4 {
   font-weight: normal;
@@ -137,15 +138,18 @@ small, .font_small {
   height: 80%; }
 
 .button-container {
-  height: 20%; }
+  height: 20%;
+  overflow: none; }
 
 .button-box {
-  height: 20%;
+  height: 100%;
+  width: 100%;
   bottom: 0;
   right: 0; }
 
 .answer-button-box {
-  height: 20%;
+  height: 100%;
+  width: 32%;
   bottom: 0; }
 
 .footer {
@@ -165,5 +169,56 @@ hr {
 
 .f-left {
   float: left; }
+
+button:focus {
+  outline: none; }
+
+#next:hover {
+  background-color: #F4F4F4;
+  cursor: pointer; }
+
+#up:hover {
+  background-color: #F4F4F4;
+  cursor: pointer; }
+
+#down:hover {
+  background-color: #F4F4F4;
+  cursor: pointer; }
+
+.active {
+  background-color: #F4F4F4; }
+
+*:focus {
+  outline: 0; }
+
+#next {
+  background-color: #272928;
+  color: #A29060;
+  border: none;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  width: 100%;
+  height: 100%; }
+
+#up {
+  background-color: #272928;
+  color: #A29060;
+  border: none;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  width: 100%;
+  height: 100%; }
+
+#down {
+  background-color: #272928;
+  color: #A29060;
+  border: none;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  width: 100%;
+  height: 100%; }
 
 /*# sourceMappingURL=application.css.map */

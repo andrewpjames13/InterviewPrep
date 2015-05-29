@@ -40,20 +40,21 @@
 
 .button-container{
   height:20%;
+  overflow:none;
+
 }
 
 .button-box{
-  // position:absolute;
-  height:20%;
+  height:100%;
+  width:100%;
   bottom: 0;
   right:0;
 }
 
 .answer-button-box{
-  // position:absolute;
-  height:20%;
+  height:100%;
+  width:32%;
   bottom: 0;
-  // right:0;
 }
 
 .footer{
@@ -77,6 +78,79 @@ hr{
 
 .f-left{
   float:left;
+}
+
+// input{
+//   background-color: $black;
+//   color: $gold;
+//   border: none;
+//   margin: 20% auto;
+//   text-align: center;
+//   font-size: 2.5em;
+//   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+//   font-weight: lighter;
+//   // padding: 20% 0 0 0;
+// }
+
+button:focus{
+  outline:none;
+}
+
+#next:hover{
+  background-color: $white;
+  cursor: pointer;
+}
+
+#up:hover{
+  background-color: $white;
+  cursor: pointer;
+}
+
+#down:hover{
+  background-color: $white;
+  cursor: pointer;
+}
+
+.active{
+  background-color: $white;
+
+}
+
+*:focus {
+    outline: 0;
+}
+
+#next{
+  background-color: $black;
+  color: $gold;
+  border: none;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  width:100%;
+  height: 100%;
+}
+
+#up{
+  background-color: $black;
+  color: $gold;
+  border: none;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  width:100%;
+  height: 100%;
+}
+
+#down{
+  background-color: $black;
+  color: $gold;
+  border: none;
+  font-size: 2.5em;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: lighter;
+  width:100%;
+  height: 100%;
 }
 // .prep-app{
 //   width: 30%;

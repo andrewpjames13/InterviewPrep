@@ -10,7 +10,7 @@
   <body>
       <div class="col-4-5 f-right">
         <div class="col-5-5 header black">
-          <h2>PrApp</h2>
+          <h2>Golden</h2>
         </div>
         <div id="content" class="col-5-5 black">
 
@@ -83,7 +83,7 @@
           this.setState({value:"See Answer"});
           questionNodes(this.state);
         } else if(this.state.value === "See Answer"){
-          $('input[id=next]').prop( "disabled", true );
+          $('button[id=next]').prop( "disabled", true );
           this.setState({answered: true});
           this.setState({value:"Next Question"});
         } else if (this.state.answered === false){
@@ -151,7 +151,7 @@
 
           <div className="col-1-5-5 button-box">
             <form onSubmit={this.handleSubmit}>
-              <input id="next" type="submit" value={this.state.value}/>
+              <button id="next" type="submit" value={this.state.value}>{this.state.value}</button>
             </form>
           </div>
           </div>
@@ -166,8 +166,8 @@
           <div>
           <div className="col-5-5 content-con">
             <h1>
-              Start your interview Preperation.
-              You can thank me later!
+            Start your interview Preperation.
+              You can thank me later when you{"'"}re Golden!
             </h1>
             </div>
 
@@ -222,24 +222,28 @@
       },
       handleUpSubmit: function(e){
         e.preventDefault();
+        $('#up').css("background-color", "#F4F4F4");
+        $('#down').css("background-color", "#272928");
 
         array[this.state.question].correct = true;
         this.setState({answered: true});
 
-        $('input[id=up]').prop( "disabled", true );
-        $('input[id=down]').prop( "disabled", false );
-        $('input[id=next]').prop( "disabled", false );
+        $('button[id=up]').prop( "disabled", true );
+        $('button[id=down]').prop( "disabled", false );
+        $('button[id=next]').prop( "disabled", false );
 
       },
       handleDownSubmit: function(e){
         e.preventDefault();
+        $('#up').css("background-color", "#272928");
+        $('#down').css("background-color", "#F4F4F4");
 
         array[this.state.question].correct = false;
         this.setState({answered: true});
 
-        $('input[id=up]').prop( "disabled", false );
-        $('input[id=down]').prop( "disabled", true );
-        $('input[id=next]').prop( "disabled", false );
+        $('button[id=up]').prop( "disabled", false );
+        $('button[id=down]').prop( "disabled", true );
+        $('button[id=next]').prop( "disabled", false );
 
       },
       render: function(){
@@ -247,7 +251,7 @@
           <div className="prep-answer">
           <div className="col-5-5 content-con">
             <h1>{array[this.state.question].question}</h1>
-            <h1>{array[this.state.question].answer}</h1>
+            <p>{array[this.state.question].answer}</p>
           </div>
             <div className="col-3-5-5 button-container f-left">
 
@@ -256,12 +260,12 @@
               </div>
               <div className="col-1-6-5 answer-button-box black f-left">
                 <form onSubmit={this.handleUpSubmit}>
-                  <input id="up" type="submit" value="up"/>
+                  <button id="up" type="submit" value="up">up</button>
                 </form>
               </div>
               <div className="col-1-6-5 answer-button-box black f-left">
                 <form onSubmit={this.handleDownSubmit}>
-                  <input id="down" type="submit" value="down"/>
+                  <button id="down" type="submit" value="down">down</button>
                 </form>
               </div>
 
