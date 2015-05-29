@@ -45,7 +45,7 @@
     <!-- <div id="content"></div> -->
     <!-- <div id="timer"></div> -->
     <script type="text/jsx">
-
+    var standingQ = "";
     var QOrA = "";
     var quest = 0;
     var inputVal = "";
@@ -133,8 +133,10 @@
         if (this.state.answered === false && this.state.value === "Start"){
           QOrA = <PrepStart />;
         } else if (this.state.answered === false && array.length === 0 && this.state.value === "See Answer"){
-          QOrA = <PrepEnd />;
+          standingQ = <PrepEnd />;
+          QOrA = "";
         } else if (this.state.answered === false && this.state.value === "See Answer"){
+          standingQ = "";
           QOrA = <PrepQuestion data={this.state.data}/>;
         } else if (this.state.answered === false){
           QOrA = <PrepQuestion data={this.state.data}/>;
@@ -144,11 +146,13 @@
 
         return(
           <div className="prep-app">
+          {standingQ}
           {QOrA}
-          <hr></hr>
-          <form onSubmit={this.handleSubmit}>
-            <input id="next" type="submit" value={this.state.value}/>
-          </form>
+          <div className="col-5-5">
+            <form onSubmit={this.handleSubmit}>
+              <input id="next" type="submit" value={this.state.value}/>
+            </form>
+          </div>
           </div>
         )
       }
@@ -157,10 +161,13 @@
     var PrepStart = React.createClass({
       render: function(){
         return(
-          <h1>
-          Start your interview PrApperation.
-          You can thank me later!
-          </h1>
+          <div>
+            <h1>
+              Start your interview PrApperation.
+              You can thank me later!
+            </h1>
+            <hr></hr>
+          </div>
         )
       }
     });
@@ -187,6 +194,7 @@
           return(
             <div className="prep-question">
             <h1>{array[this.state.question].question}</h1>
+            <hr></hr>
             </div>
           )
 
@@ -223,7 +231,10 @@
       render: function(){
         return(
           <div className="prep-answer">
+          <h1>{array[this.state.question].question}</h1>
             <h1>{array[this.state.question].answer}</h1>
+            <hr></hr>
+
             <form onSubmit={this.handleUpSubmit}>
               <input id="up" type="submit" value="up"/>
             </form>
