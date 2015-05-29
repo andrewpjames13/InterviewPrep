@@ -332,13 +332,21 @@
     },
     render: function() {
       return (
-        <div>Seconds Elapsed: {this.state.secondsElapsed}</div>
+        <div>
+          <div className="seconds">
+            {this.state.secondsElapsed}
+          </div>
+          <div className="seconds-txt">
+            Seconds have passed
+          </div>
+        </div>
       );
     }
   });
 
   var mountNode = document.getElementById('timer')
   React.render(<Timer />, mountNode);
+
 
     </script>
   </body>

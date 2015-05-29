@@ -104,6 +104,9 @@ h3 {
 h4 {
   font-size: 1.414em; }
 
+h5 {
+  font-size: 1em; }
+
 small, .font_small {
   font-size: 0.707em; }
 
@@ -217,5 +220,15 @@ button:focus {
   font-weight: lighter;
   width: 100%;
   height: 100%; }
+
+#timer {
+  text-align: center;
+  padding: 3% 0 0 0; }
+
+.seconds {
+  font-size: 4em; }
+
+.seconds-txt {
+  font-size: 1.5em; }
 
 /*# sourceMappingURL=application.css.map */
