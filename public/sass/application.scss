@@ -1,6 +1,9 @@
 *, *:before, *:after {
   box-sizing: border-box;
 }
+
+@import "reset";
+
 .prep-app{
   width: 30%;
   height:400px;
