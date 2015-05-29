@@ -29,7 +29,8 @@
 
         </div>
         <div class="col-5-5 box gray2">
-
+          <div class="completed">0</div>
+          <div class="total">0</div>
         </div>
         <div class="col-5-5 box gray3">
 
@@ -47,7 +48,8 @@
     var QOrA = "";
     var quest = 0;
     var inputVal = "";
-
+    var amountTotal = 0;
+    var completed = 0;
 
     var PrepApp = React.createClass({
       loadQuestionsFromServer: function() {
@@ -82,6 +84,13 @@
           }else if(this.state.value === "Start" && this.state.answered === false){
           this.setState({value:"See Answer"});
           questionNodes(this.state);
+          questionAmount();
+          currentComplete();
+          $('.total').empty();
+          $('.completed').empty();
+          $('.total').append(amountTotal);
+          $('.completed').append(completed);
+
         } else if(this.state.value === "See Answer"){
           $('button[id=next]').prop( "disabled", true );
           this.setState({answered: true});
@@ -89,6 +98,7 @@
         } else if (this.state.answered === false){
           this.setState({answered: true});
           this.setState({value:"Next Question"});
+
         } else if (this.state.answered === true){
           var DomState = this.state.data;
           var dbUpdate = {};
@@ -108,6 +118,8 @@
           this.setState({value:"See Answer"});
           this.setState({value:"See Answer"});
           questionNodes(this.state);
+          currentComplete();
+
           // this.setState({data: data.questions});
 
           // $.ajax({
@@ -275,13 +287,6 @@
       }
     });
 
-    // var data = [
-    //   {question: "Color?", answer: "red", correct: false},
-    //   {question: "Dog?", answer: "poodle", correct: false},
-    //   {question: "Food?", answer: "Pizza", correct: false},
-    //   {question: "Shake?", answer: "Chocolate", correct: false}
-    // ];
-
     var array = [];
     var questionNodes = function(state){
       array = []
@@ -311,6 +316,17 @@
     array[index] = t;
   }
     return array;
+  }
+
+  function questionAmount(){
+    amountTotal = array.length;
+    return amountTotal;
+  }
+
+  function currentComplete(){
+    var complete = array.length;
+    completed = amountTotal - complete;
+    return completed;
   }
 
   React.render(<PrepApp url="http://localhost:3000/questions" />, document.getElementById('content'));
