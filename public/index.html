@@ -128,10 +128,11 @@
           questionNodes(this.state);
           currentComplete();
           $('.completed').append(completed);
+          ansTotal = ansTotal + 1;
+
           currentPercentage();
           $('.percent').empty();
           $('.percent').append(percentage);
-          ansTotal = ansTotal + 1;
 
           // $.ajax({
           //         url: this.props.url + "/" + dbUpdate.id,
