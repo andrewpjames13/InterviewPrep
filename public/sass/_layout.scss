@@ -151,15 +151,29 @@ button:focus{
 .total{
   position: absolute;
   text-align: center;
-  font-size: 4em;
-  padding: 50px 0 40px 170px;
+  font-size: 3em;
+  padding: 50px 0 40px 160px;
   z-index:2;
 }
 
 .completed{
   position: absolute;
   text-align: center;
-  font-size: 4em;
-  padding: 0 0 50px 90px;
+  font-size: 3em;
+  padding: 10px 0 50px 110px;
 
+}
+
+.total-txt{
+  position: relative;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 40% 0 0 0;
+}
+
+.slash{
+  position: absolute;
+  font-size: 6em;
+  text-align: center;
+  margin: 0 0 0 9%;
 }
