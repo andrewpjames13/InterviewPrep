@@ -35,7 +35,8 @@
           <div class="total-txt">Questions Complete</div>
         </div>
         <div class="col-5-5 box gray3">
-
+          <div class="percent">0%</div>
+          <div class="answered-txt">Answered Correctly</div>
         </div>
         <div class="col-5-5 box gray4">
 
@@ -52,6 +53,9 @@
     var inputVal = "";
     var amountTotal = 0;
     var completed = 0;
+    var percentage = "0%";
+    var ansCorrect = 1;
+    var ansTotal = 0;
 
     var PrepApp = React.createClass({
       loadQuestionsFromServer: function() {
@@ -124,8 +128,10 @@
           questionNodes(this.state);
           currentComplete();
           $('.completed').append(completed);
-
-          // this.setState({data: data.questions});
+          currentPercentage();
+          $('.percent').empty();
+          $('.percent').append(percentage);
+          ansTotal = ansTotal + 1;
 
           // $.ajax({
           //         url: this.props.url + "/" + dbUpdate.id,
@@ -158,19 +164,17 @@
         } else if (this.state.answered === true){
           QOrA = <PrepAnswer />;
         }
-
         return(
           <div className="prep-app">
-          {standingQ}
-          {QOrA}
-          <div className="col-1-25-5 button-container f-right">
-
-          <div className="col-1-5-5 button-box">
-            <form onSubmit={this.handleSubmit}>
-              <button id="next" type="submit" value={this.state.value}>{this.state.value}</button>
-            </form>
-          </div>
-          </div>
+            {standingQ}
+            {QOrA}
+            <div className="col-1-25-5 button-container f-right">
+              <div className="col-1-5-5 button-box">
+                <form onSubmit={this.handleSubmit}>
+                  <button id="next" type="submit" value={this.state.value}>{this.state.value}</button>
+                </form>
+              </div>
+            </div>
           </div>
         )
       }
@@ -215,7 +219,6 @@
       },
       render: function(){
 
-        // questionNodes(this.state.data);
         var arrayData = this.props.data
         if (arrayData != []){
           return(
@@ -298,7 +301,6 @@
       var d = state.data;
       if (d){
         d.map(function (question){
-          console.log(question);
         if (question.correct === false){
           array.push(question)
         }
@@ -332,6 +334,22 @@
     var complete = array.length;
     completed = amountTotal - complete;
     return completed;
+  }
+
+  function currentPercentage(){
+    if (ansTotal === 0 ){
+      percentage = "0%";
+    } else {
+    var complete = array.length;
+    completed = amountTotal - complete;
+    var percentageNum = Math.floor(completed/ansTotal*100);
+    console.log(amountTotal);
+    console.log(ansTotal);
+    console.log(percentageNum);
+    var percentageString = percentageNum.toString();
+    percentage = percentageString + "%";
+    return percentage;
+  }
   }
 
   React.render(<PrepApp url="http://localhost:3000/questions" />, document.getElementById('content'));
