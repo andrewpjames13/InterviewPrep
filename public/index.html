@@ -100,6 +100,8 @@
           this.setState({value:"Next Question"});
 
         } else if (this.state.answered === true){
+          $('.completed').empty();
+
           var DomState = this.state.data;
           var dbUpdate = {};
           if (DomState){
@@ -119,6 +121,7 @@
           this.setState({value:"See Answer"});
           questionNodes(this.state);
           currentComplete();
+          $('.completed').append(completed);
 
           // this.setState({data: data.questions});
 
