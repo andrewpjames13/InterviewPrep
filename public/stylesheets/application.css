@@ -82,7 +82,8 @@ body {
 
 p {
   margin-bottom: 1.3em;
-  font-weight: normal; }
+  font-weight: normal;
+  font-size: 2em; }
 
 h1, h2, h3, h4 {
   font-weight: normal;
