@@ -263,18 +263,6 @@ button:focus {
   height: 100px;
   width: 100%; }
 
-::selection {
-  background: #A29060;
-  /* WebKit/Blink Browsers */
-  color: #F4F4F4;
-  opacity: none; }
-
-::-moz-selection {
-  background: #A29060;
-  /* Gecko Browsers */
-  color: #F4F4F4;
-  opacity: none; }
-
 #timer {
   text-align: center;
   padding: 3% 0 0 0; }

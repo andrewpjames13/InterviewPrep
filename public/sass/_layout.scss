@@ -196,3 +196,14 @@ button:focus{
   height: 100px;
   width: 100%;
 }
+
+::selection {
+  background: $gold; /* WebKit/Blink Browsers */
+  color: $white;
+  opacity:none;
+}
+::-moz-selection {
+  background: $gold; /* Gecko Browsers */
+  color: $white;
+  opacity:none;
+}

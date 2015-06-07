@@ -13,11 +13,14 @@
         <div class="col-5-5 header black">
           <h2>Golden</h2>
         </div>
+
         <div id="content" class="col-5-5 black">
 
         </div>
 
         <div class="col-5-5 footer black">
+          <div id="eng">English</div>
+          <div id="spanish">Spanish</div>
 
         </div>
       </div>
@@ -49,6 +52,32 @@
 
         </div>
       </div>
+
+      <script>
+        function translateText(response) {
+          $('#content').html("");
+          document.getElementById("content").innerHTML += response.data.translations[0].translatedText;
+        }
+
+        $('#spanish').on('click', function(){
+          var newScript = document.createElement('script');
+          newScript.type = 'text/javascript';
+          var sourceText = escape(document.getElementById("content").innerHTML);
+          var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyBshMObdPLaLpnImsmNL63Qf6jcr9EUIRo&source=en&target=es&callback=translateText&q=' + sourceText;
+          newScript.src = source;
+          document.getElementsByTagName('head')[0].appendChild(newScript);
+          debugger;
+        });
+
+        $('#eng').on('click', function(){
+          var newScript = document.createElement('script');
+          newScript.type = 'text/javascript';
+          var sourceText = escape(document.getElementById("content").innerHTML);
+          var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyBshMObdPLaLpnImsmNL63Qf6jcr9EUIRo&source=es&target=en&callback=translateText&q=' + sourceText;
+          newScript.src = source;
+          document.getElementsByTagName('head')[0].appendChild(newScript);
+        });
+      </script>
 
     <script type="text/jsx">
     var standingQ = "";

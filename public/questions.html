@@ -1,0 +1,111 @@
+<!-- <html>
+  <head>
+    <title>Golden</title>
+    <link rel="stylesheet" href="stylesheets/application.css" media="all">
+    <link rel="icon" href="images/favicon-golden.png" type="image/x-icon"/>
+    <script src="https://www.google.com/jsapi?key=AIzaSyBshMObdPLaLpnImsmNL63Qf6jcr9EUIRo"></script>
+
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+  <body>
+<div id="languages"><p>
+	<a href="?lang=en" rel="en">English</a> / <a href="?lang=es" rel="es">Spanish</a> / <a href="?lang=it" rel="it">Italian</a> /
+	<a href="?lang=fr" rel="fr">French</a>
+</p></div>
+
+<div id="languageBlock">
+	<p>Lights go out and I can't be saved <br />
+	Tides that I tried to swim against  <br />
+	Brought me down upon my knees  <br />
+	Oh I beg, I beg and plead </p>
+
+	<p>Singin', come out if things aren't said  <br />
+	Shoot an apple off my head  <br />
+	And a, trouble that can't be named  <br />
+	Tigers waitin' to be tamed </p>
+
+	<p>Singing, yooooooooooooo ohhhhhh  <br />
+	Yoooooooooooo ohhhhhh </p>
+
+	<p>Home, home, where I wanted to go <br />
+	Home, home, where I wanted to go  <br />
+	Home, home, where I wanted to go  <br />
+	Home, home, where I wanted to go</p>
+</div>
+<script>
+// Set the original/default language
+var lang = "en";
+var currentClass = "currentLang";
+
+// Load the language lib
+google.load("language",1);
+
+$( document ).ready(function() {
+	// Retrieve the DIV to be translated.
+	var translateDiv = $("#languageBlock");
+	// Define a function to switch from the currentlanguage to another
+	var callback = function(result) {
+		if(result.translation) {
+			translateDiv.set("html",result.translation);
+		}
+	};
+	// Add a click listener to update the DIV
+	$("#languages a").on("click",function(e) {
+		// Stop the event
+		if(e) e.stop();
+		// Get the "to" language
+		var toLang = this.get("rel");
+		// Set the translation into motion
+		google.language.translate(translateDiv.get("html"),lang,toLang,callback);
+		// Set the new language
+		lang = toLang;
+		// Add class to current
+		this.getSiblings().removeClass(currentClass);
+		this.addClass(currentClass);
+	});
+});
+    </script>
+  </body>
+</html> -->
+
+<html>
+  <head>
+    <title>Translate API Example</title>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+  <body>
+    <div id="eng">English</div><br>
+    <div id="spanish">Spanish</div><br>
+
+    <div id="question">Hello world</div>
+    <div id="answer">butts and brats</div>
+
+    <script>
+      function translateText(response) {
+        $('#question').html("");
+        document.getElementById("question").innerHTML += response.data.translations[0].translatedText;
+      }
+
+      $('#spanish').on('click', function(){
+        var newScript = document.createElement('script');
+        newScript.type = 'text/javascript';
+        var sourceText = escape(document.getElementById("question").innerHTML);
+        var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyBshMObdPLaLpnImsmNL63Qf6jcr9EUIRo&source=en&target=es&callback=translateText&q=' + sourceText;
+        newScript.src = source;
+        document.getElementsByTagName('head')[0].appendChild(newScript);
+        debugger;
+      });
+
+      $('#eng').on('click', function(){
+        var newScript = document.createElement('script');
+        newScript.type = 'text/javascript';
+        var sourceText = escape(document.getElementById("question").innerHTML);
+        var source = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyBshMObdPLaLpnImsmNL63Qf6jcr9EUIRo&source=es&target=en&callback=translateText&q=' + sourceText;
+        newScript.src = source;
+        document.getElementsByTagName('head')[0].appendChild(newScript);
+      });
+    </script>
+
+  </body>
+</html>
