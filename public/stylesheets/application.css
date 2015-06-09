@@ -290,6 +290,33 @@ button:focus {
 #eng:hover, #spanish:hover {
   color: #F4F4F4; }
 
+.content-float {
+  float: right;
+  height: 1000px; }
+
+@media screen and (max-width: 1175px) {
+  .content-float {
+    float: none;
+    width: 100%; }
+
+  .stat-con {
+    width: 100%; }
+
+  .total-txt {
+    margin: 0; }
+
+  .box {
+    height: 30%;
+    padding: 50px 0 0 0; }
+
+  #timer {
+    padding: 50px 0 0 0; }
+
+  .percent {
+    margin: 0; }
+
+  #eng {
+    margin-bottom: 10px; } }
 #timer {
   text-align: center;
   padding: 3% 0 0 0; }
