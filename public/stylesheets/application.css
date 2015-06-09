@@ -291,8 +291,7 @@ button:focus {
   color: #F4F4F4; }
 
 .content-float {
-  float: right;
-  height: 1000px; }
+  float: right; }
 
 @media screen and (max-width: 1175px) {
   .content-float {
