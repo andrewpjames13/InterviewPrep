@@ -208,8 +208,18 @@ button:focus{
   opacity:none;
 }
 
-.comp{
+.completed-numbers{
   width:100px;
   height:100px;
   margin: 0 auto;
+}
+
+.language{
+  padding: 3% 5% 0 0;
+}
+
+#eng, #spanish{
+  padding: 0 0 0 5px;
+  cursor: pointer;
+  font-weight: 500;
 }
