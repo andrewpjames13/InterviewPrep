@@ -278,3 +278,24 @@ button:focus{
     font-size: 2em;
   }
 }
+
+@media screen and (max-width: 400px){
+  p{
+    font-size:1.5em;
+  }
+  h1{
+    font-size: 3.2em;
+    line-height: 1;
+  }
+  #next{
+    font-size: 1.3em;
+  }
+  #eng, #spanish{
+    padding: 0 0 10px 5px;
+    cursor: pointer;
+    font-weight: 500;
+    width: 100px;
+    float: right;
+  }
+
+}
