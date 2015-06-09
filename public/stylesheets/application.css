@@ -317,6 +317,20 @@ button:focus {
 
   #eng {
     margin-bottom: 10px; } }
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 3.7em;
+    line-height: 1; }
+
+  #content {
+    height: 70%;
+    padding: 2% 5%; }
+
+  .content-float {
+    height: 800px; }
+
+  #next {
+    font-size: 2em; } }
 #timer {
   text-align: center;
   padding: 3% 0 0 0; }
