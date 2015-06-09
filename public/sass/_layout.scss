@@ -124,6 +124,8 @@ button:focus{
   font-weight: lighter;
   width:100%;
   height: 100%;
+  // border-top: 1px solid;
+
 }
 
 #up{
@@ -158,9 +160,9 @@ button:focus{
 
 .completed{
   position: absolute;
-  text-align: center;
+  text-align: right;
   font-size: 3em;
-  padding: 10px 0 50px 110px;
+  padding: 10px 0 50px 90px;
 
 }
 
