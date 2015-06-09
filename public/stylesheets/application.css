@@ -224,16 +224,15 @@ button:focus {
 
 .total {
   position: absolute;
-  text-align: center;
+  text-align: left;
   font-size: 3em;
-  padding: 50px 0 40px 160px;
+  padding: 50px 0 40px 70px;
   z-index: 2; }
 
 .completed {
   position: absolute;
   text-align: right;
-  font-size: 3em;
-  padding: 10px 0 50px 90px; }
+  font-size: 3em; }
 
 .total-txt {
   position: relative;
@@ -245,7 +244,7 @@ button:focus {
   position: absolute;
   font-size: 6em;
   text-align: center;
-  padding: 0 0 0 45%; }
+  padding: 0 0 0 35px; }
 
 .answered-txt {
   position: relative;
@@ -274,6 +273,11 @@ button:focus {
   /* Gecko Browsers */
   color: #F4F4F4;
   opacity: none; }
+
+.comp {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto; }
 
 #timer {
   text-align: center;
