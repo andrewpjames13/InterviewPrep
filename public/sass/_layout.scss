@@ -223,3 +223,7 @@ button:focus{
   cursor: pointer;
   font-weight: 500;
 }
+
+#eng:hover, #spanish:hover{
+  color: $white;
+}

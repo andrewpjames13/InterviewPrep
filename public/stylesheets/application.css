@@ -287,6 +287,9 @@ button:focus {
   cursor: pointer;
   font-weight: 500; }
 
+#eng:hover, #spanish:hover {
+  color: #F4F4F4; }
+
 #timer {
   text-align: center;
   padding: 3% 0 0 0; }
