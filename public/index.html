@@ -58,8 +58,8 @@
 
       <script>
         function translateText(response) {
-          $('#content').html("");
-          document.getElementById("content").innerHTML += response.data.translations[0].translatedText;
+          // $('h1').html("");
+          $("#content h1").append(response.data.translations[0].translatedText);
         }
 
         $('#spanish').on('click', function(){
@@ -120,7 +120,7 @@
       // },
       handleSubmit: function(e){
         e.preventDefault();
-
+        debugger;
         if(array.length === 0 && this.state.value === "See Answer"){
           return;
           }else if(this.state.value === "Start" && this.state.answered === false){
@@ -265,7 +265,7 @@
         if (arrayData != []){
           return(
             <div className="prep-question">
-            <div className="col-5-5 content-con">
+            <div className="col-5-5 content-con"  id="question">
               <h1>{array[this.state.question].question}</h1>
             </div>
 
